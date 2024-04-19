@@ -89,12 +89,15 @@ app.get('/alumno/dni', async(req, res) =>
 })
 app.post('/alumno',async(req,res)=>
 {
-    alumnosArray.push(new Alumno("Monica Gaduro","11222333", 25));
+    let nombre = req.query.nombre;
+    let dni = req.query.dni;
+    let edad = req.query.edad;
+    alumnosArray.push(new Alumno(nombre, dni, edad));
     res.status(201).send("created");
 })
 app.delete('/alumno',async(req,res)=>
 {
-    let dni = "11222333";
+    let dni = req.query.dni;
     let alumn = (alumnosArray.findIndex((element) => element.DNI == dni));
     if(alumn != -1)
     {
